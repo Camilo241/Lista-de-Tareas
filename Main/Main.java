@@ -1,10 +1,10 @@
 package Main;
 
-import Vista.VistaGeneral;
+import Vista.VistaInterna;
 
 public class Main {
     public static void main(String[] args) {
-        VistaGeneral vistaGeneral = new Vista.VistaGeneral();
-        vistaGeneral.Vista();
+        VistaInterna vistaInterna = new Vista.VistaInterna();
+        vistaInterna.Vista();
     }
 }
