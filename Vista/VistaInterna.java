@@ -1,11 +1,8 @@
 package Vista;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.*;
-
 import Modelo.Categorias;
 import Modelo.Tarea;
 
@@ -21,27 +18,30 @@ public class VistaInterna {
 
     public void Vista() {
         ventana = new JFrame("Lista de Tareas");
-        ventana.setSize(200 ,200);
+        ventana.setSize(300 ,200);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // ventana.setLayout(new BorderLayout());
 
-        TituloTarea = new JTextField(20);
-        TituloTarea.setBounds(300, 150, 50, 50);
-        DescripcionTarea = new JTextField(20);
-        DescripcionTarea.setBounds(300, 150, 50, 50);
+        TituloTarea = new JTextField(10);
+        TituloTarea.setBounds(170, 25, 100, 25);
+        DescripcionTarea = new JTextField(10);
+        DescripcionTarea.setBounds(170, 50, 100, 25);
         CategoriaTarea = new JComboBox();
-        CategoriaTarea.setBounds(300, 150, 100, 50);
+        CategoriaTarea.setBounds(170, 75, 100, 25);
 
         panel = new JPanel();
+        panel.setLayout(null);
         CrearTarea = new JButton("Agregar Tarea");
-        CrearTarea.setBounds(300 ,150, 5, 25);
+        CrearTarea.setBounds(125 ,120, 125, 25);
+        Cancelar = new JButton("Cancelar");
+        Cancelar.setBounds(15, 120, 100, 25);
         // panel.setLayout(new GridLayout(2, 1, 10, 10));
 
-        panel.add(new JLabel("Titulo de la Tarea"));
+        panel.add(new JLabel("Titulo de la Tarea")).setBounds(30, 25, 100, 25);
         panel.add(TituloTarea);
-        panel.add(new JLabel("Descripcion de la Tarea"));
+        panel.add(new JLabel("Descripcion de la Tarea")).setBounds(30, 50, 150, 25);
         panel.add(DescripcionTarea);
-        panel.add(new JLabel("Categoria de la Tarea"));
+        panel.add(new JLabel("Categoria de la Tarea")).setBounds(30, 75, 150, 25);
         panel.add(CategoriaTarea);
 
         panel.add(CrearTarea);
