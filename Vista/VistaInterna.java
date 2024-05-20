@@ -60,6 +60,13 @@ public class VistaInterna {
             }
         });
 
+        Cancelar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ventana.dispose();
+            }
+        });
+
         ventana.setVisible(true);
     }
 }
