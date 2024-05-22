@@ -3,9 +3,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-import Controlador.ListadeCategorias;
+import Controlador.Controlador;
+import Modelo.Categoria;
+
 
 public class VistaCategoria extends JFrame {
+    private Controlador controlador;
     private JFrame ventana;
     private JPanel panel;
     private JButton CrearCategoria;
@@ -34,6 +37,13 @@ public class VistaCategoria extends JFrame {
         panel.add(Cancelar);
         ventana.add(panel);
 
+
+        CrearCategoria.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                agregarCategoria();
+            }
+        });
         Cancelar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -42,11 +52,19 @@ public class VistaCategoria extends JFrame {
         });
         ventana.setVisible(true);
     }
-    public String getNombreCategoria() {
-        return NombreCategoria.getText();
+    private void agregarCategoria() {
+        String categoria = NombreCategoria.getText();
+
+        if (!categoria.isEmpty()) {
+            controlador.agregarCategoria(new Categoria(categoria));
+            JOptionPane.showMessageDialog(this, "Categoría agregada correctamente");
+            limpiarCampo();
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor ingresa el nombre de la categoría");
+        }
+    }
+    private void limpiarCampo() {
+        NombreCategoria.setText("");
     }
 
-    public void AgregarCategoriaListener(ActionListener listener) {
-        CrearCategoria.addActionListener(listener);
-    }
 }
