@@ -1,22 +1,23 @@
 package Modelo;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Tarea {
 
-    private Date Fecha;
+    private LocalDate Fecha;
     private String titulo;
     private String descripcion;
     private String categoria;
 
-    public Tarea(Date fecha, String titulo, String descripcion, String categoria) {
+    public Tarea(LocalDate fecha, String titulo, String descripcion, String categoria) {
         this.Fecha = fecha;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.categoria = categoria;
     }
 
-    public Date getFecha() {
+    public LocalDate getFecha() {
         return Fecha;
     }
 
@@ -32,7 +33,7 @@ public class Tarea {
         return categoria;
     }
     
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDate fecha) {
         Fecha = fecha;
     }
 

@@ -89,14 +89,13 @@ public class VistaTarea {
         String categoria = (String) CategoriaTarea.getSelectedItem();
         LocalDate fechaActual = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String fecha = fechaActual.format(formatter);
 
         if (!titulo.isEmpty() && !descripcion.isEmpty()) {
-            controlador.agregarTarea(new Tarea(fecha, titulo, descripcion, categoria));
-            JOptionPane.showMessageDialog(this, "Tarea agregada correctamente");
+            controlador.agregarTarea(new Tarea(fechaActual, titulo, descripcion, categoria));
+            JOptionPane.showInputDialog(this, "Tarea agregada correctamente");
             limpiarCampos();
         } else {
-            JOptionPane.showMessageDialog(this, "Por favor completa todos los campos");
+            JOptionPane.showInputDialog(this, "Por favor completa todos los campos");
         }
     }
 
