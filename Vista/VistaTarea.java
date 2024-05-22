@@ -2,31 +2,43 @@ package Vista;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.*;
-import Modelo.Categorias;
+
+import Controlador.Controlador;
+import Modelo.Categoria;
 import Modelo.Tarea;
 
-public class VistaInterna {
+public class VistaTarea {
+    private Controlador controlador;
     private JFrame ventana;
     private JPanel panel;
     private JButton CrearTarea;
     private JButton Cancelar;
     private JTextField TituloTarea;
     private JTextField DescripcionTarea;
-    private JComboBox CategoriaTarea;
+    private JComboBox<String> CategoriaTarea;
     
 
     public void VistaAgregarTarea() {
         ventana = new JFrame("Lista de Tareas");
         ventana.setSize(300 ,200);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        InicializarComponentes();
+        cargarCategorias();
         
 
+    }
+    public void InicializarComponentes(){
         TituloTarea = new JTextField(10);
         TituloTarea.setBounds(170, 25, 100, 25);
         DescripcionTarea = new JTextField(10);
         DescripcionTarea.setBounds(170, 50, 100, 25);
-        CategoriaTarea = new JComboBox();
+        CategoriaTarea = new JComboBox<>();
         CategoriaTarea.setBounds(170, 75, 100, 25);
 
         panel = new JPanel();
@@ -48,21 +60,12 @@ public class VistaInterna {
         panel.add(Cancelar);
 
         ventana.add(panel);
-        
 
         CrearTarea.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
-                String TituloTareas = TituloTarea.getText();
-                String DescripcionTareas = DescripcionTarea.getText();
-                String CategoriaTareas = (String) CategoriaTarea.getSelectedItem();
-                
-                Tarea tarea = new Tarea(TituloTareas,DescripcionTareas,CategoriaTareas);
+                agregarTarea();
             }
         });
-
-
-
         Cancelar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -71,5 +74,36 @@ public class VistaInterna {
         });
 
         ventana.setVisible(true);
+    }
+
+    private void cargarCategorias() {
+        List<Categoria> categorias = controlador.obtenerCategorias();
+        for (Categoria categoria : categorias) {
+            CategoriaTarea.addItem(categoria.getNombreCategoria());
+        }
+    }
+
+    private void agregarTarea() {
+        String titulo = TituloTarea.getText();
+        String descripcion = DescripcionTarea.getText();
+        String categoria = (String) CategoriaTarea.getSelectedItem();
+        LocalDate fechaActual = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String fecha = fechaActual.format(formatter);
+
+        if (!titulo.isEmpty() && !descripcion.isEmpty()) {
+            controlador.agregarTarea(new Tarea(fecha, titulo, descripcion, categoria));
+            JOptionPane.showMessageDialog(this, "Tarea agregada correctamente");
+            limpiarCampos();
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor completa todos los campos");
+        }
+    }
+
+    private void limpiarCampos() {
+        // txtFecha.setText("");
+        TituloTarea.setText("");
+        DescripcionTarea.setText("");
+        CategoriaTarea.setSelectedIndex(0);
     }
 }

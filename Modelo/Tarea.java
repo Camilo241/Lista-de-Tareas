@@ -1,49 +1,50 @@
 package Modelo;
 
+import java.util.Date;
+
 public class Tarea {
-    // private int id;
+
+    private Date Fecha;
     private String titulo;
     private String descripcion;
-    private String Categoria;
-    
+    private String categoria;
 
-    public Tarea( String titulo, String descripcion, String categoria) {
-        // this.id = id;
+    public Tarea(Date fecha, String titulo, String descripcion, String categoria) {
+        this.Fecha = fecha;
         this.titulo = titulo;
         this.descripcion = descripcion;
-        this.Categoria = categoria;
+        this.categoria = categoria;
     }
-    
-    // public int getId() {
-    //     return id;
-    // }
 
-    // public void setId(int id) {
-    //     this.id = id;
-    // }
+    public Date getFecha() {
+        return Fecha;
+    }
 
-    public String getTitulo() {
+        public String getTitulo() {
         return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
     }
 
     public String getDescripcion() {
         return descripcion;
     }
 
+    public String getCategoria() {
+        return categoria;
+    }
+    
+    public void setFecha(Date fecha) {
+        Fecha = fecha;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
-    public String getCategoria() {
-        return Categoria;
-    }
-
     public void setCategoria(String categoria) {
-        Categoria = categoria;
+        this.categoria = categoria;
     }
-
 }
