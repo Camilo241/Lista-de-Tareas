@@ -3,8 +3,8 @@ package Main;
 import javax.swing.SwingUtilities;
 
 import Controlador.Controlador;
-import Modelo.Categoria;
 import Vista.VistaCategoria;
+import Vista.VistaGeneral;
 import Vista.VistaTarea;
 
 public class Main {
@@ -16,11 +16,13 @@ public class Main {
             VistaGeneral vistaGeneral = new VistaGeneral(controlador);
             vistaGeneral.setVisible(true);
 
-            VistaTarea vistaAgregarTarea = new VistaTarea(controlador);
+            VistaTarea vistaTarea = new VistaTarea(controlador);
+            vistaTarea.setVisible(true);
             
 
             VistaCategoria vistaCategoria = new VistaCategoria(controlador);
-            
+            vistaCategoria.setVisible(true);
+                        
         });
     }
 }

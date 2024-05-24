@@ -16,7 +16,9 @@ public class VistaCategoria extends JFrame {
     private JTextField NombreCategoria;
 
     
-
+    public VistaCategoria(Controlador controlador) {
+        this.controlador = controlador;
+    }
     public void VistaAgregarCategoria() {
         ventana = new JFrame("Categorias");
         ventana.setSize(300, 200);

@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.*;
@@ -13,7 +12,7 @@ import Controlador.Controlador;
 import Modelo.Categoria;
 import Modelo.Tarea;
 
-public class VistaTarea {
+public class VistaTarea extends JFrame{
     private Controlador controlador;
     private JFrame ventana;
     private JPanel panel;
@@ -23,17 +22,16 @@ public class VistaTarea {
     private JTextField DescripcionTarea;
     private JComboBox<String> CategoriaTarea;
     
+    public VistaTarea(Controlador controlador) {
+        this.controlador = controlador;
+    }
 
     public void VistaAgregarTarea() {
         ventana = new JFrame("Lista de Tareas");
         ventana.setSize(300 ,200);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        InicializarComponentes();
         cargarCategorias();
-        
-
-    }
-    public void InicializarComponentes(){
+    
         TituloTarea = new JTextField(10);
         TituloTarea.setBounds(170, 25, 100, 25);
         DescripcionTarea = new JTextField(10);
@@ -100,9 +98,10 @@ public class VistaTarea {
     }
 
     private void limpiarCampos() {
-        // txtFecha.setText("");
         TituloTarea.setText("");
         DescripcionTarea.setText("");
         CategoriaTarea.setSelectedIndex(0);
     }
+
+    
 }
