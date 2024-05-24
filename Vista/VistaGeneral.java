@@ -14,22 +14,28 @@ import java.util.List;
 
 public class VistaGeneral extends JFrame {
     private Controlador controlador;
+    private JFrame ventana;
     private JTable tablaTareas;
     private DefaultTableModel modeloTabla;
     private JButton AgregarTarea, AgregarCategoria;
 
+
     public VistaGeneral(Controlador controlador) {
         this.controlador = controlador;
+    }
+    public  void VistaGeneralListar() {
+        setLocationRelativeTo(null);
 
-        setTitle("Lista de Tareas");
-        setSize(800, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana = new JFrame("Lista de Tareas");
+        ventana.setSize(800, 400);
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         inicializarComponentes();
         actualizarTabla();
     }
 
     private void inicializarComponentes() {
+        
         JPanel panelPrincipal = new JPanel();
         panelPrincipal.setLayout(null);
 
@@ -68,6 +74,9 @@ public class VistaGeneral extends JFrame {
         panelPrincipal.add(AgregarCategoria);
 
         setContentPane(panelPrincipal);
+        ventana.add(panelPrincipal);
+
+        ventana.setVisible(true);
     }
 
     private void actualizarTabla() {
@@ -82,12 +91,12 @@ public class VistaGeneral extends JFrame {
 
     private void abrirVistaTarea() {
         VistaTarea vistaTarea = new VistaTarea(controlador);
-        vistaTarea.setVisible(true);
+        vistaTarea.VistaAgregarTarea();
         
     }
 
     private void abrirVistaCategoria() {
         VistaCategoria vistaCategoria = new VistaCategoria(controlador);
-        vistaCategoria.setVisible(true);
+        vistaCategoria.VistaAgregarCategoria();
     }
 }

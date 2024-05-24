@@ -24,15 +24,21 @@ public class VistaCategoria extends JFrame {
         ventana.setSize(300, 200);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        panel.add(new JLabel("Titulo de la Tarea")).setBounds(30, 25, 100, 25);
+        inicializarComponentes();
+        setLocationRelativeTo(null);
+    }
+    public void inicializarComponentes(){
+        setLocationRelativeTo(null);
+        panel = new JPanel();
+        panel.add(new JLabel("Titulo de la Categoria")).setBounds(30, 25, 120, 25);
         NombreCategoria = new JTextField(20);
         NombreCategoria.setBounds(170, 25, 100, 25);
         CrearCategoria = new JButton("Crear Categoria");
         CrearCategoria.setBounds(125 ,120, 125, 25);
         Cancelar = new JButton("Cancelar");
-        Cancelar.setBounds(15 ,120, 125, 25);
+        Cancelar.setBounds(15 ,120, 100, 25);
 
-        panel = new JPanel();
+        
         panel.setLayout(null);
         panel.add(NombreCategoria);
         panel.add(CrearCategoria);

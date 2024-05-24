@@ -31,7 +31,19 @@ public class VistaTarea extends JFrame{
         ventana.setSize(300 ,200);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         cargarCategorias();
-    
+        inicializarComponentes();
+        setLocationRelativeTo(null);
+    }
+
+
+    private void inicializarComponentes(){
+        
+        JPanel panel = new JPanel();
+        panel.setLayout(null);
+        CrearTarea = new JButton("Agregar Tarea");
+        CrearTarea.setBounds(125 ,120, 125, 25);
+        Cancelar = new JButton("Cancelar");
+        Cancelar.setBounds(15, 120, 100, 25);
         TituloTarea = new JTextField(10);
         TituloTarea.setBounds(170, 25, 100, 25);
         DescripcionTarea = new JTextField(10);
@@ -39,13 +51,6 @@ public class VistaTarea extends JFrame{
         CategoriaTarea = new JComboBox<>();
         CategoriaTarea.setBounds(170, 75, 100, 25);
 
-        panel = new JPanel();
-        panel.setLayout(null);
-        CrearTarea = new JButton("Agregar Tarea");
-        CrearTarea.setBounds(125 ,120, 125, 25);
-        Cancelar = new JButton("Cancelar");
-        Cancelar.setBounds(15, 120, 100, 25);
-        
 
         panel.add(new JLabel("Titulo de la Tarea")).setBounds(30, 25, 100, 25);
         panel.add(TituloTarea);
