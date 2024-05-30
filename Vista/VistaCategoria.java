@@ -9,6 +9,7 @@ import Modelo.Categoria;
 
 public class VistaCategoria extends JFrame {
     private Controlador controlador;
+    private VistaTarea vistaTarea;
     private JFrame ventana;
     private JPanel panel;
     private JButton CrearCategoria;
@@ -16,7 +17,8 @@ public class VistaCategoria extends JFrame {
     private JTextField NombreCategoria;
 
     
-    public VistaCategoria(Controlador controlador) {
+    public VistaCategoria(Controlador controlador,VistaTarea vistaTarea) {
+        this.vistaTarea = vistaTarea;
         this.controlador = controlador;
     }
     public void VistaAgregarCategoria() {
@@ -65,7 +67,8 @@ public class VistaCategoria extends JFrame {
 
         if (!categoria.isEmpty()) {
             controlador.agregarCategoria(new Categoria(categoria));
-            JOptionPane.showMessageDialog(this, "Categoría agregada correctamente");
+            JOptionPane.showMessageDialog(this, "Categoría agregada correctamente");            
+            vistaTarea.actualizarCategorias();
             limpiarCampo();
         } else {
             JOptionPane.showMessageDialog(this, "Por favor ingresa el nombre de la categoría");

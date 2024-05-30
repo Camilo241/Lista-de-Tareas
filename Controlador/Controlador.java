@@ -16,7 +16,9 @@ public class Controlador {
     }
 
     public void agregarTarea(Tarea tarea) {
+        
         listaTareas.add(tarea);
+        
     }
 
     public void agregarCategoria(Categoria categoria) {

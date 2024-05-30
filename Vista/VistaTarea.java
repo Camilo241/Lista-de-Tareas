@@ -30,14 +30,13 @@ public class VistaTarea extends JFrame{
         ventana = new JFrame("Lista de Tareas");
         ventana.setSize(300 ,200);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        cargarCategorias();
         inicializarComponentes();
+        cargarCategorias();
         setLocationRelativeTo(null);
     }
 
 
     private void inicializarComponentes(){
-        
         JPanel panel = new JPanel();
         panel.setLayout(null);
         CrearTarea = new JButton("Agregar Tarea");
@@ -80,13 +79,27 @@ public class VistaTarea extends JFrame{
     }
 
     private void cargarCategorias() {
+
+        if (CategoriaTarea == null) {
+            System.out.println("comboBoxCategorias es null en cargarCategorias");
+            return;
+        }
+
         List<Categoria> categorias = controlador.obtenerCategorias();
+        
         for (Categoria categoria : categorias) {
             CategoriaTarea.addItem(categoria.getNombreCategoria());
         }
+        
+
+    }
+
+    public void actualizarCategorias() {
+        cargarCategorias(); 
     }
 
     private void agregarTarea() {
+        
         String titulo = TituloTarea.getText();
         String descripcion = DescripcionTarea.getText();
         String categoria = (String) CategoriaTarea.getSelectedItem();
@@ -95,10 +108,10 @@ public class VistaTarea extends JFrame{
 
         if (!titulo.isEmpty() && !descripcion.isEmpty()) {
             controlador.agregarTarea(new Tarea(fechaActual, titulo, descripcion, categoria));
-            JOptionPane.showInputDialog(this, "Tarea agregada correctamente");
+            JOptionPane.showMessageDialog(this, "Tarea agregada correctamente");
             limpiarCampos();
         } else {
-            JOptionPane.showInputDialog(this, "Por favor completa todos los campos");
+            JOptionPane.showMessageDialog(this, "Por favor completa todos los campos");
         }
     }
 
