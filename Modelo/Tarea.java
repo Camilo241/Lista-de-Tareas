@@ -3,18 +3,20 @@ package Modelo;
 import java.time.LocalDate;
 
 public class Tarea {
-    // private int id;
+    private int id;
     private LocalDate Fecha;
     private String titulo;
     private String descripcion;
     private String categoria;
+    private boolean estado;
 
-    public Tarea( LocalDate fecha, String titulo, String descripcion, String categoria) {
-        // this.id = id;
+    public Tarea(int id,LocalDate fecha, String titulo, String descripcion, String categoria,boolean estado) {
+        this.id = id;
         this.Fecha = fecha;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.categoria = categoria;
+        this.estado = estado;
     }
 
     public LocalDate getFecha() {
@@ -49,11 +51,19 @@ public class Tarea {
         this.categoria = categoria;
     }
 
-    // public int getId() {
-    //     return id;
-    // }
+    public int getId() {
+        return id;
+    }
 
-    // public void setId(int id) {
-    //     this.id = id;
-    // }
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
 }
