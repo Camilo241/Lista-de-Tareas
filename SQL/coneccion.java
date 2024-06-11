@@ -4,20 +4,18 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class coneccion {
+
+    private static final String URL = "jdbc:sqlserver://localhost:1433;encrypt=true;integratedSecurity=true;trustServerCertificate=true;databaseName=ListaTareas;user=sa;password=1234";
+
+    public static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(URL);
+    }
+
     public static void main(String[] args) {
-        String url = "jdbc:sqlserver://localhost:1433;encrypt=true;integratedSecurity=true;trustServerCertificate=true;databaseName=ListaTareas;user=sa;password=1234";//localhost;//casi simpre el puerto para sql server es 1433 
-        try (Connection coneccion = DriverManager.getConnection(url)){
-            System.out.println("Coneccion ha sido Exitosa.");
-            
+        try (Connection coneccion = getConnection()) {
+            System.out.println("Conexión ha sido exitosa.");
         } catch (SQLException e) {
-            System.out.println(e);
+            System.out.println("Error al conectar a la base de datos: " + e.getMessage());
         }
-
     }
-
-    public static Connection getConnection() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getConnection'");
-    }
-    
 }
