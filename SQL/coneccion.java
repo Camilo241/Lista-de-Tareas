@@ -17,12 +17,5 @@ public class coneccion {
         } catch (SQLException e) {
             System.out.println("Error al conectar a la base de datos: " + e.getMessage());
         }
-
     }
-
-    public static Connection getConnection() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getConnection'");
-    }
-    
 }
