@@ -21,9 +21,10 @@ public class Controlador {
     public void agregarTarea(Tarea tarea) {
         listaTareas.add(tarea);
     }
-    public void agregarCategoria(String NombreCategoria, boolean estadoCategoria) {
-        Categoria categoria = new Categoria(NombreCategoria, estadoCategoria);
-        
+
+    public void agregarCategoria(String nombreCategoria, boolean estadoCategoria) {
+        Categoria categoria = new Categoria(nombreCategoria, estadoCategoria);
+
         String sql = "{call SP_InsertarCategoria(?, ?)}";  // Usamos ? como marcadores de posición
 
         try (Connection conn = coneccion.getConnection();

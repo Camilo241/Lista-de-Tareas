@@ -20,6 +20,9 @@ public class coneccion {
 
     }
 
-    
+    public static Connection getConnection() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getConnection'");
+    }
     
 }
