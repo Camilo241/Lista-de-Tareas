@@ -1,16 +1,16 @@
 package Modelo;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Tarea {
     private int id;
-    private LocalDate Fecha;
+    private LocalDateTime Fecha;
     private String titulo;
     private String descripcion;
     private String categoria;
     private boolean estado;
 
-    public Tarea(int id,LocalDate fecha, String titulo, String descripcion, String categoria,boolean estado) {
+    public Tarea(int id,LocalDateTime fecha, String titulo, String descripcion, String categoria,boolean estado) {
         this.id = id;
         this.Fecha = fecha;
         this.titulo = titulo;
@@ -19,7 +19,7 @@ public class Tarea {
         this.estado = estado;
     }
 
-    public LocalDate getFecha() {
+    public LocalDateTime getFecha() {
         return Fecha;
     }
 
@@ -35,7 +35,7 @@ public class Tarea {
         return categoria;
     }
     
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(LocalDateTime fecha) {
         Fecha = fecha;
     }
 

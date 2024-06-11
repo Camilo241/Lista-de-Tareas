@@ -15,6 +15,8 @@ public class VistaCategoria extends JFrame {
     private JButton CrearCategoria;
     private JButton Cancelar;
     private JTextField NombreCategoria;
+    private JTextField EstadoCategoria;
+
 
     
     public VistaCategoria(Controlador controlador,VistaTarea vistaTarea) {
@@ -35,6 +37,8 @@ public class VistaCategoria extends JFrame {
         panel.add(new JLabel("Titulo de la Categoria")).setBounds(30, 25, 120, 25);
         NombreCategoria = new JTextField(20);
         NombreCategoria.setBounds(170, 25, 100, 25);
+        EstadoCategoria = new JTextField(20);
+        EstadoCategoria.setBounds(170, 50, 100, 25);
         CrearCategoria = new JButton("Crear Categoria");
         CrearCategoria.setBounds(125 ,120, 125, 25);
         Cancelar = new JButton("Cancelar");
@@ -43,6 +47,7 @@ public class VistaCategoria extends JFrame {
         
         panel.setLayout(null);
         panel.add(NombreCategoria);
+        panel.add(EstadoCategoria);
         panel.add(CrearCategoria);
         panel.add(Cancelar);
         ventana.add(panel);
@@ -62,11 +67,13 @@ public class VistaCategoria extends JFrame {
         });
         ventana.setVisible(true);
     }
-    private void agregarCategoria() {
-        String categoria = NombreCategoria.getText();
 
-        if (!categoria.isEmpty()) {
-            controlador.agregarCategoria(new Categoria(categoria));
+    private void agregarCategoria() {
+        String categoriaN = NombreCategoria.getText();
+        String categoriaE = EstadoCategoria.getText();
+
+        if (!categoriaN.isEmpty() && categoriaE.isEmpty()) {
+            controlador.agregarCategoria(new Categoria( nombreCategoria, estadoCategoria));
             JOptionPane.showMessageDialog(this, "Categoría agregada correctamente");            
             vistaTarea.actualizarCategorias();
             limpiarCampo();
