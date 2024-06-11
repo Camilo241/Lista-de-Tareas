@@ -13,11 +13,12 @@ public class coneccion {
             System.out.println(e);
         }
 
+        
+
     }
 
-    public static Connection getConnection() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getConnection'");
-    }
+    
+
+
     
 }
