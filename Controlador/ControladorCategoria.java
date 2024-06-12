@@ -41,16 +41,11 @@ public class ControladorCategoria {
         String sql = "{call SP_ConsultarCategorias()}";
 
         try (Connection conn = coneccion.getConnection();
-             CallableStatement stmt = conn.prepareCall(sql);
-             ResultSet rs = stmt.executeQuery()) {
+            CallableStatement stmt = conn.prepareCall(sql)){
+            
             stmt.getString("@nombreCategoria");
             Categoria categoria = new Categoria(nombreCategoria, true);
             categorias.add(categoria);
-            // while (rs.next()) {
-            //     String nombreCategoriaa = rs.getString("@NombreCategoria");
-            //     Categoria categoria = new Categoria(nombreCategoria, true);
-            //     categorias.add(categoria);
-            // }
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Error al cargar las categorías: " + e.getMessage());
