@@ -97,7 +97,7 @@ public class VistaGeneral extends JFrame {
     }
 
     private void actualizarTabla() {
-        List<Tarea> tareas = controladorTarea.cargarTareas(getTitle(), getWarningString(), getName(), rootPaneCheckingEnabled);
+        List<Tarea> tareas = controladorTarea.cargarTareas();
         for (Tarea tarea : tareas) {
             modeloTabla.addRow(new Object[]{tarea.getFecha(), tarea.getTitulo(), tarea.getDescripcion(), tarea.getCategoria(), tarea.isEstado()});
         }

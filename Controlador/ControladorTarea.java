@@ -1,8 +1,10 @@
 package Controlador;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +20,8 @@ public class ControladorTarea {
         listaTareas = new ArrayList<>();
     }
     //CREATE
-    public void agregarTarea(String titulo, String descripcion,String categoria, boolean estado ) {
-        Tarea tarea = new Tarea( titulo, descripcion, categoria, estado);
+    public void agregarTarea(LocalDateTime fecha,String titulo, String descripcion,String categoria, boolean estado ) {
+        Tarea tarea = new Tarea( fecha,titulo, descripcion, categoria, estado);
 
         String sql = "{call SP_InsertarTarea(?, ?, ?, ?)}";
 
@@ -40,7 +42,7 @@ public class ControladorTarea {
     }
 
     //READ
-    public List<Tarea> cargarTareas(String titulo,String descripcion,String Categoria,boolean estado) {
+    public List<Tarea> cargarTareas() {
         List<Tarea> tareas = new ArrayList<>();
         String sql = "{call SP_ConsultarTareas}";
     
@@ -50,7 +52,12 @@ public class ControladorTarea {
             ResultSet rs = stmt.executeQuery();
     
             while (rs.next()) {
-                Tarea tarea = new Tarea(titulo, descripcion,Categoria, true);
+                LocalDateTime Fecha = rs.getDate("FECHA_TAREA");
+                String Titulo = rs.getString("NOMBRE_TAREA");
+                String Descripcion = rs.getString("DESCRIPCION_TAREA");
+                String Categoria = rs.getString("CATEGORIA_TAREA");
+
+                Tarea tarea = new Tarea(Fecha,Titulo, Descripcion, Categoria, false);
                 tareas.add(tarea);
             }
     
