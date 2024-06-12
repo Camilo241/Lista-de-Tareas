@@ -2,6 +2,9 @@ package Vista;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import java.time.LocalDateTime;
+
 import java.util.List;
 
 import javax.swing.*;
@@ -10,11 +13,11 @@ import Controlador.ControladorCategoria;
 import Controlador.ControladorTarea;
 import Modelo.Categoria;
 
-public class VistaTarea extends JFrame {
+
+public class VistaTarea extends JFrame{
     private ControladorTarea controladorTarea;
     private ControladorCategoria controladorCategoria;
     private JFrame ventana;
-    @SuppressWarnings("unused")
     private JPanel panel;
     private JButton CrearTarea;
     private JButton Cancelar;
@@ -22,26 +25,27 @@ public class VistaTarea extends JFrame {
     private JTextField DescripcionTarea;
     private JComboBox<String> CategoriaTarea;
     private JComboBox<String> EstadoTarea;
-
-    public VistaTarea(ControladorTarea controladorTarea, ControladorCategoria controladorCategoria) {
+    
+    public VistaTarea(ControladorTarea controladorTarea,ControladorCategoria controladorCategoria) {
         this.controladorTarea = controladorTarea;
         this.controladorCategoria = controladorCategoria;
     }
 
     public void VistaAgregarTarea() {
         ventana = new JFrame("Lista de Tareas");
-        ventana.setSize(300, 200);
+        ventana.setSize(300 ,200);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         inicializarComponentes();
         cargarCategorias();
         setLocationRelativeTo(null);
     }
 
-    private void inicializarComponentes() {
+
+    private void inicializarComponentes(){
         JPanel panel = new JPanel();
         panel.setLayout(null);
         CrearTarea = new JButton("Agregar Tarea");
-        CrearTarea.setBounds(125, 120, 125, 25);
+        CrearTarea.setBounds(125 ,120, 125, 25);
         Cancelar = new JButton("Cancelar");
         Cancelar.setBounds(15, 120, 100, 25);
         TituloTarea = new JTextField(10);
@@ -50,8 +54,10 @@ public class VistaTarea extends JFrame {
         DescripcionTarea.setBounds(170, 50, 100, 25);
         CategoriaTarea = new JComboBox<>();
         CategoriaTarea.setBounds(170, 75, 100, 25);
-        EstadoTarea = new JComboBox<>(new String[] { "Pendiente", "Completada" });
+        EstadoTarea = new JComboBox<>(new String[]{"Pendiente", "Completada"});
         EstadoTarea.setBounds(170, 100, 100, 25);
+        
+
 
         panel.add(new JLabel("Titulo de la Tarea")).setBounds(30, 25, 100, 25);
         panel.add(TituloTarea);
@@ -84,7 +90,7 @@ public class VistaTarea extends JFrame {
 
     private void cargarCategorias() {
         List<Categoria> categorias = controladorCategoria.cargarCategorias();
-        CategoriaTarea.removeAllItems(); // Limpia el JComboBox
+        CategoriaTarea.removeAllItems();  // Limpia el JComboBox
         for (Categoria categoria : categorias) {
             CategoriaTarea.addItem(categoria.getNombreCategoria());
         }
@@ -95,13 +101,14 @@ public class VistaTarea extends JFrame {
     }
 
     private void agregarTarea() {
+        LocalDateTime Fecha = LocalDateTime.now();
         String tareaT = TituloTarea.getText();
         String tareaD = DescripcionTarea.getText();
         String tareaC = (String) CategoriaTarea.getSelectedItem();
         String tareaE = (String) EstadoTarea.getSelectedItem();
         boolean estadoTarea = tareaE.equalsIgnoreCase("Activa");
         if (!tareaT.isEmpty() && !tareaD.isEmpty() && tareaC != null) {
-            controladorTarea.agregarTarea(tareaT, tareaD, tareaC, estadoTarea);
+            controladorTarea.agregarTarea(Fecha,tareaT, tareaD, tareaC, estadoTarea);
             JOptionPane.showMessageDialog(this, "Tarea agregada correctamente");
             actualizarCategorias();
             limpiarCampos();
@@ -119,4 +126,5 @@ public class VistaTarea extends JFrame {
         EstadoTarea.setSelectedIndex(0);
     }
 
+    
 }

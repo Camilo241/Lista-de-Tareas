@@ -11,7 +11,7 @@ public class Tarea {
     private boolean estado;
 
     public Tarea(LocalDateTime fecha,String titulo, String descripcion, String categoria, boolean estado) {
-        this.Fecha = fecha;
+        this.Fecha = LocalDateTime.now();;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.categoria = categoria;
