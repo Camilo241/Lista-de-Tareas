@@ -13,8 +13,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-
-
 public class VistaGeneral extends JFrame {
     private ControladorTarea controladorTarea;
     private ControladorCategoria controladorCategoria;
@@ -24,14 +22,15 @@ public class VistaGeneral extends JFrame {
     private DefaultTableModel modeloTabla;
     private JButton AgregarTarea, AgregarCategoria;
 
-
-    public VistaGeneral(ControladorTarea controladorTarea,ControladorCategoria controladorCategoria,VistaTarea vistaTarea) {
+    public VistaGeneral(ControladorTarea controladorTarea, ControladorCategoria controladorCategoria,
+            VistaTarea vistaTarea) {
         this.vistaTarea = vistaTarea;
         this.controladorTarea = controladorTarea;
         this.controladorCategoria = controladorCategoria;
-        
+
     }
-    public  void VistaGeneralListar() {
+
+    public void VistaGeneralListar() {
         setLocationRelativeTo(null);
 
         ventana = new JFrame("Lista de Tareas");
@@ -43,7 +42,7 @@ public class VistaGeneral extends JFrame {
     }
 
     private void inicializarComponentes() {
-        
+
         JPanel panelPrincipal = new JPanel();
         panelPrincipal.setLayout(null);
 
@@ -59,7 +58,7 @@ public class VistaGeneral extends JFrame {
         JScrollPane scrollPane = new JScrollPane(tablaTareas);
         scrollPane.setBounds(30, 30, 550, 300);
         panelPrincipal.add(scrollPane);
-        
+
         TableColumn categoriaColumn = tablaTareas.getColumnModel().getColumn(3);
         JComboBox<String> comboBoxCategorias = new JComboBox<>();
         List<Categoria> categorias = controladorCategoria.cargarCategorias();
@@ -69,17 +68,16 @@ public class VistaGeneral extends JFrame {
         categoriaColumn.setCellEditor(new DefaultCellEditor(comboBoxCategorias));
 
         AgregarTarea = new JButton("Agregar Tarea");
-        AgregarTarea.setBounds(600 ,50, 165, 25);
+        AgregarTarea.setBounds(600, 50, 165, 25);
         AgregarTarea.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 abrirVistaTarea();
-                
+
             }
         });
         panelPrincipal.add(AgregarTarea);
 
-        
         AgregarCategoria = new JButton("Agregar Categoría");
         AgregarCategoria.setBounds(600, 80, 165, 25);
         AgregarCategoria.addActionListener(new ActionListener() {
@@ -99,17 +97,15 @@ public class VistaGeneral extends JFrame {
     private void actualizarTabla() {
         List<Tarea> tareas = controladorTarea.cargarTareas();
         for (Tarea tarea : tareas) {
-            modeloTabla.addRow(new Object[]{tarea.getFecha(), tarea.getTitulo(), tarea.getDescripcion(), tarea.getCategoria(), tarea.isEstado()});
+            modeloTabla.addRow(new Object[] { tarea.getFecha(), tarea.getTitulo(), tarea.getDescripcion(),
+                    tarea.getCategoria(), tarea.isEstado() });
         }
     }
 
-    
-
     private void abrirVistaTarea() {
-        VistaTarea vistaTarea = new VistaTarea(controladorTarea,controladorCategoria);
+        VistaTarea vistaTarea = new VistaTarea(controladorTarea, controladorCategoria);
         vistaTarea.VistaAgregarTarea();
-        
-        
+
     }
 
     private void abrirVistaCategoria() {

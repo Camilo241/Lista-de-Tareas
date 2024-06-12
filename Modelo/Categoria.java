@@ -17,6 +17,7 @@ public class Categoria {
     public void setId(int id) {
         this.id = id;
     }
+
     public String getNombreCategoria() {
         return nombreCategoria;
     }
@@ -24,6 +25,7 @@ public class Categoria {
     public void setNombreCategoria(String nombreCategoria) {
         this.nombreCategoria = nombreCategoria;
     }
+
     public boolean isEstadoCategoria() {
         return estadoCategoria;
     }
@@ -32,5 +34,4 @@ public class Categoria {
         this.estadoCategoria = estadoCategoria;
     }
 
-    
 }

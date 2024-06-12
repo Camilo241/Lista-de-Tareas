@@ -10,7 +10,7 @@ public class Tarea {
     private String categoria;
     private boolean estado;
 
-    public Tarea( String titulo, String descripcion, String categoria,boolean estado) {
+    public Tarea(String titulo, String descripcion, String categoria, boolean estado) {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.categoria = categoria;
@@ -21,7 +21,7 @@ public class Tarea {
         return Fecha;
     }
 
-        public String getTitulo() {
+    public String getTitulo() {
         return titulo;
     }
 
@@ -32,7 +32,7 @@ public class Tarea {
     public String getCategoria() {
         return categoria;
     }
-    
+
     public void setFecha(LocalDateTime fecha) {
         Fecha = fecha;
     }

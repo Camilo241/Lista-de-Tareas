@@ -1,5 +1,9 @@
 {
     "files.associations": {
         "plyconfig.json": "jsonc"
-    }
+    },
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\Users\\camil\\Downloads\\mssql-jdbc-12.6.2.jre11.jar"
+    ]
 }

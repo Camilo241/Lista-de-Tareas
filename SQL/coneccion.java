@@ -1,9 +1,10 @@
 package SQL;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class coneccion {
+public class Coneccion {
 
     private static final String URL = "jdbc:sqlserver://localhost:1433;encrypt=true;integratedSecurity=true;trustServerCertificate=true;databaseName=ListaTareas;user=sa;password=1234";
 
@@ -20,6 +21,4 @@ public class coneccion {
 
     }
 
-    
-    
 }
