@@ -20,8 +20,8 @@ public class ControladorTarea {
         listaTareas = new ArrayList<>();
     }
     //CREATE
-    public void agregarTarea(LocalDateTime fecha,String titulo, String descripcion,String categoria, boolean estado ) {
-        Tarea tarea = new Tarea( fecha,titulo, descripcion, categoria, estado);
+    public void agregarTarea(String titulo, String descripcion,String categoria, boolean estado ) {
+        Tarea tarea = new Tarea(titulo, descripcion, categoria, estado);
 
         String sql = "{call SP_InsertarTarea(?, ?, ?, ?)}";
 
@@ -52,12 +52,12 @@ public class ControladorTarea {
             ResultSet rs = stmt.executeQuery();
     
             while (rs.next()) {
-                LocalDateTime Fecha = rs.getDate("FECHA_TAREA");
+                
                 String Titulo = rs.getString("NOMBRE_TAREA");
                 String Descripcion = rs.getString("DESCRIPCION_TAREA");
                 String Categoria = rs.getString("CATEGORIA_TAREA");
 
-                Tarea tarea = new Tarea(Fecha,Titulo, Descripcion, Categoria, false);
+                Tarea tarea = new Tarea(Titulo, Descripcion, Categoria, false);
                 tareas.add(tarea);
             }
     

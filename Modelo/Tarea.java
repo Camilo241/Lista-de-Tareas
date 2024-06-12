@@ -10,8 +10,7 @@ public class Tarea {
     private String categoria;
     private boolean estado;
 
-    public Tarea( LocalDateTime fecha,String titulo, String descripcion, String categoria,boolean estado) {
-        this.Fecha = fecha;
+    public Tarea( String titulo, String descripcion, String categoria,boolean estado) {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.categoria = categoria;
