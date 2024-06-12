@@ -47,7 +47,7 @@ public class VistaGeneral extends JFrame {
         JPanel panelPrincipal = new JPanel();
         panelPrincipal.setLayout(null);
 
-        DefaultTableModel modeloTabla = new DefaultTableModel();
+        modeloTabla = new DefaultTableModel();
         modeloTabla.addColumn("Fecha");
         modeloTabla.addColumn("Titulo");
         modeloTabla.addColumn("Descripcion");
