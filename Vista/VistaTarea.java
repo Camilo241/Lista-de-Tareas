@@ -104,7 +104,7 @@ public class VistaTarea extends JFrame{
         String tareaD = DescripcionTarea.getText();
         String tareaC = (String) CategoriaTarea.getSelectedItem();
         String tareaE = (String) EstadoTarea.getSelectedItem();
-        boolean estadoTarea = tareaE.equalsIgnoreCase("Completada");
+        boolean estadoTarea = tareaE.equalsIgnoreCase("Activa");
         if (!tareaT.isEmpty() && !tareaD.isEmpty() && tareaC != null) {
             controladorTarea.agregarTarea(tareaT, tareaD, tareaC, estadoTarea);
             JOptionPane.showMessageDialog(this, "Tarea agregada correctamente");

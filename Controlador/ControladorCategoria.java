@@ -42,8 +42,7 @@ public class ControladorCategoria {
 
         try (Connection conn = coneccion.getConnection();
             CallableStatement stmt = conn.prepareCall(sql)){
-            
-            stmt.getString("@nombreCategoria");
+            stmt.getString("@NombreCategoria");
             Categoria categoria = new Categoria(nombreCategoria, true);
             categorias.add(categoria);
         } catch (SQLException e) {

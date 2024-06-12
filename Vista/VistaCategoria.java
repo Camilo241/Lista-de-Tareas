@@ -38,7 +38,7 @@ public class VistaCategoria extends JFrame {
         NombreCategoria = new JTextField(20);
         NombreCategoria.setBounds(170, 25, 100, 25);
         panel.add(new JLabel("Estado de la Categoria")).setBounds(30, 50, 120, 25);
-        EstadoCategoria = new JComboBox<>(new String[]{"Inactiva", "Activa"});;
+        EstadoCategoria = new JComboBox<>(new String[]{"Activa", "Inactiva"});;
         EstadoCategoria.setBounds(170, 50, 100, 25);
         CrearCategoria = new JButton("Crear Categoria");
         CrearCategoria.setBounds(125 ,120, 125, 25);
@@ -72,7 +72,7 @@ public class VistaCategoria extends JFrame {
     private void agregarCategoria() {
         String categoriaN = NombreCategoria.getText();
         String categoriaE = (String)EstadoCategoria.getSelectedItem();
-        boolean estadoCategoria = categoriaE.equalsIgnoreCase("Pendiente");  
+        boolean estadoCategoria = categoriaE.equalsIgnoreCase("Activa");  
         if (!categoriaN.isEmpty() ) {
             controladorCategoria.agregarCategoria(categoriaN,estadoCategoria);
             JOptionPane.showMessageDialog(this, "Categoría agregada correctamente");            
