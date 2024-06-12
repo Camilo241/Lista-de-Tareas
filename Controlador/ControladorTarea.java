@@ -40,7 +40,7 @@ public class ControladorTarea {
     }
 
     //READ
-    public List<Tarea> cargarTareas() {
+    public List<Tarea> cargarTareas(String titulo,String descripcion,String Categoria,boolean estado) {
         List<Tarea> tareas = new ArrayList<>();
         String sql = "{call SP_ConsultarTareas}";
     
@@ -50,15 +50,13 @@ public class ControladorTarea {
             ResultSet rs = stmt.executeQuery();
     
             while (rs.next()) {
-                // String nombre = rs.getString("NOMBRE_CATEGORIA");
-                // boolean estado = rs.getBoolean("ESTADO_CATEGORIA");
-                Tarea tarea = new Tarea(sql, sql, sql, false);
+                Tarea tarea = new Tarea(titulo, descripcion,Categoria, true);
                 tareas.add(tarea);
             }
     
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("Error al obtener las categorías activas: " + e.getMessage());
+            System.out.println("Error al obtener las tareas " + e.getMessage());
         }
     
         return tareas;
