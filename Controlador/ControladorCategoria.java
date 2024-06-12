@@ -38,7 +38,7 @@ public class ControladorCategoria {
 
     public List<Categoria> cargarCategorias() {
         List<Categoria> categorias = new ArrayList<>();
-        String sql = "{call SP_ObtenerCategoriasActivas}";
+        String sql = "{call SP_ConsultarCategorias}";
     
         try (Connection conn = coneccion.getConnection();
             CallableStatement stmt = conn.prepareCall(sql)) {
