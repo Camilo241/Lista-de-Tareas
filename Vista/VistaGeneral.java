@@ -49,9 +49,10 @@ public class VistaGeneral extends JFrame {
 
         DefaultTableModel modeloTabla = new DefaultTableModel();
         modeloTabla.addColumn("Fecha");
-        modeloTabla.addColumn("Nombre");
+        modeloTabla.addColumn("Titulo");
         modeloTabla.addColumn("Descripcion");
         modeloTabla.addColumn("Categoria");
+        modeloTabla.addColumn("Estado");
 
         tablaTareas = new JTable(modeloTabla);
 
@@ -98,7 +99,7 @@ public class VistaGeneral extends JFrame {
     private void actualizarTabla() {
         List<Tarea> tareas = controladorTarea.obtenerTareas();
         for (Tarea tarea : tareas) {
-            modeloTabla.addRow(new Object[]{tarea.getFecha(), tarea.getTitulo(), tarea.getDescripcion(), tarea.getCategoria()});
+            modeloTabla.addRow(new Object[]{tarea.getFecha(), tarea.getTitulo(), tarea.getDescripcion(), tarea.getCategoria(), tarea.isEstado()});
         }
     }
 

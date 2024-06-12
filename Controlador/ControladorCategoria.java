@@ -16,7 +16,7 @@ public class ControladorCategoria {
     public ControladorCategoria() {
         listaCategorias = new ArrayList<>();
     }
-
+    //CREATE
     public void agregarCategoria(String nombreCategoria, boolean estadoCategoria) {
         Categoria categoria = new Categoria(nombreCategoria, estadoCategoria);
 
@@ -36,6 +36,7 @@ public class ControladorCategoria {
         }
     }
 
+    //READ
     public List<Categoria> cargarCategorias() {
         List<Categoria> categorias = new ArrayList<>();
         String sql = "{call SP_ConsultarCategorias}";
@@ -59,4 +60,7 @@ public class ControladorCategoria {
     
         return categorias;
     }
+
+    //UPDATE
+    
 }

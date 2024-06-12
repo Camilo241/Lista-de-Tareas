@@ -16,7 +16,7 @@ public class ControladorTarea {
     public ControladorTarea() {
         listaTareas = new ArrayList<>();
     }
-
+    //CREATE
     public void agregarTarea(String titulo, String descripcion,String categoria, boolean estado ) {
         Tarea tarea = new Tarea( titulo, descripcion, categoria, estado);
 
