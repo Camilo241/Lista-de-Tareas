@@ -15,7 +15,7 @@ public class VistaCategoria extends JFrame {
     private JButton CrearCategoria;
     private JButton Cancelar;
     private JTextField NombreCategoria;
-    private JTextField EstadoCategoria;
+    private JComboBox<String> EstadoCategoria;
 
 
     
@@ -37,7 +37,8 @@ public class VistaCategoria extends JFrame {
         panel.add(new JLabel("Titulo de la Categoria")).setBounds(30, 25, 120, 25);
         NombreCategoria = new JTextField(20);
         NombreCategoria.setBounds(170, 25, 100, 25);
-        EstadoCategoria = new JTextField(20);
+        panel.add(new JLabel("Estado de la Categoria")).setBounds(30, 50, 120, 25);
+        EstadoCategoria = new JComboBox<>(new String[]{"Pendiente", "Completada"});;
         EstadoCategoria.setBounds(170, 50, 100, 25);
         CrearCategoria = new JButton("Crear Categoria");
         CrearCategoria.setBounds(125 ,120, 125, 25);
@@ -70,8 +71,8 @@ public class VistaCategoria extends JFrame {
 
     private void agregarCategoria() {
         String categoriaN = NombreCategoria.getText();
-        String categoriaE = EstadoCategoria.getText();
-        boolean estadoCategoria = categoriaE.equalsIgnoreCase("true");  
+        String categoriaE = (String)EstadoCategoria.getSelectedItem();
+        boolean estadoCategoria = categoriaE.equalsIgnoreCase("Pendiente");  
         if (!categoriaN.isEmpty() ) {
             controladorCategoria.agregarCategoria(categoriaN,estadoCategoria);
             JOptionPane.showMessageDialog(this, "Categoría agregada correctamente");            
@@ -83,7 +84,7 @@ public class VistaCategoria extends JFrame {
     }
     private void limpiarCampo() {
         NombreCategoria.setText("");
-        EstadoCategoria.setText("");
+        EstadoCategoria.setSelectedIndex(0);
     }
 
 }
