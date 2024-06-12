@@ -3,6 +3,7 @@ package Vista;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import java.time.format.DateTimeFormatter;
 
 import Controlador.ControladorCategoria;
 import Controlador.ControladorTarea;
@@ -96,9 +97,17 @@ public class VistaGeneral extends JFrame {
 
     private void actualizarTabla() {
         List<Tarea> tareas = controladorTarea.cargarTareas();
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
         for (Tarea tarea : tareas) {
-            modeloTabla.addRow(new Object[] { tarea.getFecha(), tarea.getTitulo(), tarea.getDescripcion(),
-                    tarea.getCategoria(), tarea.isEstado() });
+            String fechaFormateada = tarea.getFecha() != null ? tarea.getFecha().format(dateFormat) : "No disponible";
+            modeloTabla.addRow(new Object[] {
+                    fechaFormateada,
+                    tarea.getTitulo(),
+                    tarea.getDescripcion(),
+                    tarea.getCategoria(),
+                    tarea.isEstado()
+            });
         }
     }
 
