@@ -61,7 +61,7 @@ public class VistaGeneral extends JFrame {
         
         TableColumn categoriaColumn = tablaTareas.getColumnModel().getColumn(3);
         JComboBox<String> comboBoxCategorias = new JComboBox<>();
-        List<Categoria> categorias = controladorCategoria.cargarCategorias(getName());
+        List<Categoria> categorias = controladorCategoria.cargarCategorias();
         for (Categoria categoria : categorias) {
             comboBoxCategorias.addItem(categoria.getNombreCategoria());
         }

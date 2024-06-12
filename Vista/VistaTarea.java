@@ -88,7 +88,7 @@ public class VistaTarea extends JFrame{
     }
 
     private void cargarCategorias() {
-        List<Categoria> categorias = controladorCategoria.cargarCategorias(getName());
+        List<Categoria> categorias = controladorCategoria.cargarCategorias();
         CategoriaTarea.removeAllItems();  // Limpia el JComboBox
         for (Categoria categoria : categorias) {
             CategoriaTarea.addItem(categoria.getNombreCategoria());

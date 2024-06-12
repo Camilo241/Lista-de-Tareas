@@ -36,20 +36,27 @@ public class ControladorCategoria {
         }
     }
 
-    public List<Categoria> cargarCategorias(String nombreCategoria) {
+    public List<Categoria> cargarCategorias() {
         List<Categoria> categorias = new ArrayList<>();
-        String sql = "{call SP_ConsultarCategorias()}";
-
+        String sql = "{call SP_ObtenerCategoriasActivas}";
+    
         try (Connection conn = coneccion.getConnection();
-            CallableStatement stmt = conn.prepareCall(sql)){
-            stmt.getString("@NombreCategoria");
-            Categoria categoria = new Categoria(nombreCategoria, true);
-            categorias.add(categoria);
+            CallableStatement stmt = conn.prepareCall(sql)) {
+    
+            ResultSet rs = stmt.executeQuery();
+    
+            while (rs.next()) {
+                String nombre = rs.getString("NOMBRE_CATEGORIA");
+                // boolean estado = rs.getBoolean("ESTADO_CATEGORIA");
+                Categoria categoria = new Categoria( nombre, true);
+                categorias.add(categoria);
+            }
+    
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("Error al cargar las categorías: " + e.getMessage());
+            System.out.println("Error al obtener las categorías activas: " + e.getMessage());
         }
-
+    
         return categorias;
     }
 }
