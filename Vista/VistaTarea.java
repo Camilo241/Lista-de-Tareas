@@ -8,12 +8,14 @@ import java.util.List;
 
 import javax.swing.*;
 
-import Controlador.Controlador;
+import Controlador.ControladorCategoria;
+import Controlador.ControladorTarea;
 import Modelo.Categoria;
 import Modelo.Tarea;
 
 public class VistaTarea extends JFrame{
-    private Controlador controlador;
+    private ControladorTarea controladorTarea;
+    private ControladorCategoria controladorCategoria;
     private JFrame ventana;
     private JPanel panel;
     private JButton CrearTarea;
@@ -21,9 +23,11 @@ public class VistaTarea extends JFrame{
     private JTextField TituloTarea;
     private JTextField DescripcionTarea;
     private JComboBox<String> CategoriaTarea;
+    private JComboBox<String> EstadoTarea;
     
-    public VistaTarea(Controlador controlador) {
-        this.controlador = controlador;
+    public VistaTarea(ControladorTarea controladorTarea,ControladorCategoria controladorCategoria) {
+        this.controladorTarea = controladorTarea;
+        this.controladorCategoria = controladorCategoria;
     }
 
     public void VistaAgregarTarea() {
@@ -49,6 +53,9 @@ public class VistaTarea extends JFrame{
         DescripcionTarea.setBounds(170, 50, 100, 25);
         CategoriaTarea = new JComboBox<>();
         CategoriaTarea.setBounds(170, 75, 100, 25);
+        EstadoTarea = new JComboBox<>(new String[]{"Pendiente", "Completada"});
+        EstadoTarea.setBounds(170, 100, 100, 25);
+        
 
 
         panel.add(new JLabel("Titulo de la Tarea")).setBounds(30, 25, 100, 25);
@@ -57,6 +64,8 @@ public class VistaTarea extends JFrame{
         panel.add(DescripcionTarea);
         panel.add(new JLabel("Categoria de la Tarea")).setBounds(30, 75, 150, 25);
         panel.add(CategoriaTarea);
+        panel.add(new JLabel("Estado de la Tarea")).setBounds(30, 100, 150, 25);
+        panel.add(EstadoTarea);
 
         panel.add(CrearTarea);
         panel.add(Cancelar);
@@ -79,36 +88,27 @@ public class VistaTarea extends JFrame{
     }
 
     private void cargarCategorias() {
-
-        if (CategoriaTarea == null) {
-            System.out.println("comboBoxCategorias es null en cargarCategorias");
-            return;
-        }
-
-        List<Categoria> categorias = controlador.obtenerCategorias();
-        
+        List<Categoria> categorias = controladorCategoria.cargarCategorias(getName());
+        CategoriaTarea.removeAllItems();  // Limpia el JComboBox
         for (Categoria categoria : categorias) {
             CategoriaTarea.addItem(categoria.getNombreCategoria());
         }
-        
-
     }
 
     public void actualizarCategorias() {
-        cargarCategorias(); 
+        cargarCategorias();
     }
 
     private void agregarTarea() {
-        
-        String titulo = TituloTarea.getText();
-        String descripcion = DescripcionTarea.getText();
-        String categoria = (String) CategoriaTarea.getSelectedItem();
-        LocalDate fechaActual = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-        if (!titulo.isEmpty() && !descripcion.isEmpty()) {
-            controlador.agregarTarea(new Tarea(fechaActual, titulo, descripcion, categoria));
+        String tareaT = TituloTarea.getText();
+        String tareaD = DescripcionTarea.getText();
+        String tareaC = (String) CategoriaTarea.getSelectedItem();
+        String tareaE = (String) EstadoTarea.getSelectedItem();
+        boolean estadoTarea = tareaE.equalsIgnoreCase("Completada");
+        if (!tareaT.isEmpty() && !tareaD.isEmpty() && tareaC != null) {
+            controladorTarea.agregarTarea(tareaT, tareaD, tareaC, estadoTarea);
             JOptionPane.showMessageDialog(this, "Tarea agregada correctamente");
+            actualizarCategorias();
             limpiarCampos();
         } else {
             JOptionPane.showMessageDialog(this, "Por favor completa todos los campos");
@@ -118,7 +118,10 @@ public class VistaTarea extends JFrame{
     private void limpiarCampos() {
         TituloTarea.setText("");
         DescripcionTarea.setText("");
-        CategoriaTarea.setSelectedIndex(0);
+        if (CategoriaTarea.getItemCount() > 0) {
+            CategoriaTarea.setSelectedIndex(0);
+        }
+        EstadoTarea.setSelectedIndex(0);
     }
 
     

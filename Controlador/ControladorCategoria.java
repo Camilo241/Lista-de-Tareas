@@ -1,25 +1,20 @@
 package Controlador;
+
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import Modelo.Categoria;
-import Modelo.Tarea;
 import SQL.coneccion;
 
-public class Controlador {
-    private List<Tarea> listaTareas;
+public class ControladorCategoria {
     private List<Categoria> listaCategorias;
 
-    public Controlador() {
-        listaTareas = new ArrayList<>();
+    public ControladorCategoria() {
         listaCategorias = new ArrayList<>();
-    }
-
-    public void agregarTarea(Tarea tarea) {
-        listaTareas.add(tarea);
     }
 
     public void agregarCategoria(String nombreCategoria, boolean estadoCategoria) {
@@ -41,11 +36,26 @@ public class Controlador {
         }
     }
 
-    public List<Tarea> obtenerTareas() {
-        return listaTareas;
-    }
+    public List<Categoria> cargarCategorias(String nombreCategoria) {
+        List<Categoria> categorias = new ArrayList<>();
+        String sql = "{call SP_ConsultarCategorias()}";
 
-    public List<Categoria> obtenerCategorias() {
-        return listaCategorias;
+        try (Connection conn = coneccion.getConnection();
+             CallableStatement stmt = conn.prepareCall(sql);
+             ResultSet rs = stmt.executeQuery()) {
+            stmt.getString("@nombreCategoria");
+            Categoria categoria = new Categoria(nombreCategoria, true);
+            categorias.add(categoria);
+            // while (rs.next()) {
+            //     String nombreCategoriaa = rs.getString("@NombreCategoria");
+            //     Categoria categoria = new Categoria(nombreCategoria, true);
+            //     categorias.add(categoria);
+            // }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error al cargar las categorías: " + e.getMessage());
+        }
+
+        return categorias;
     }
 }

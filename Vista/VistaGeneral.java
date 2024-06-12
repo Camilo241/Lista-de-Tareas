@@ -4,7 +4,8 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
-import Controlador.Controlador;
+import Controlador.ControladorCategoria;
+import Controlador.ControladorTarea;
 import Modelo.Categoria;
 import Modelo.Tarea;
 
@@ -15,7 +16,8 @@ import java.util.List;
 
 
 public class VistaGeneral extends JFrame {
-    private Controlador controlador;
+    private ControladorTarea controladorTarea;
+    private ControladorCategoria controladorCategoria;
     private VistaTarea vistaTarea;
     private JFrame ventana;
     private JTable tablaTareas;
@@ -23,9 +25,10 @@ public class VistaGeneral extends JFrame {
     private JButton AgregarTarea, AgregarCategoria;
 
 
-    public VistaGeneral(Controlador controlador,VistaTarea vistaTarea) {
+    public VistaGeneral(ControladorTarea controladorTarea,ControladorCategoria controladorCategoria,VistaTarea vistaTarea) {
         this.vistaTarea = vistaTarea;
-        this.controlador = controlador;
+        this.controladorTarea = controladorTarea;
+        this.controladorCategoria = controladorCategoria;
         
     }
     public  void VistaGeneralListar() {
@@ -58,7 +61,7 @@ public class VistaGeneral extends JFrame {
         
         TableColumn categoriaColumn = tablaTareas.getColumnModel().getColumn(3);
         JComboBox<String> comboBoxCategorias = new JComboBox<>();
-        List<Categoria> categorias = controlador.obtenerCategorias();
+        List<Categoria> categorias = controladorCategoria.cargarCategorias(getName());
         for (Categoria categoria : categorias) {
             comboBoxCategorias.addItem(categoria.getNombreCategoria());
         }
@@ -93,7 +96,7 @@ public class VistaGeneral extends JFrame {
     }
 
     private void actualizarTabla() {
-        List<Tarea> tareas = controlador.obtenerTareas();
+        List<Tarea> tareas = controladorTarea.obtenerTareas();
         for (Tarea tarea : tareas) {
             modeloTabla.addRow(new Object[]{tarea.getFecha(), tarea.getTitulo(), tarea.getDescripcion(), tarea.getCategoria()});
         }
@@ -102,14 +105,14 @@ public class VistaGeneral extends JFrame {
     
 
     private void abrirVistaTarea() {
-        VistaTarea vistaTarea = new VistaTarea(controlador);
+        VistaTarea vistaTarea = new VistaTarea(controladorTarea,controladorCategoria);
         vistaTarea.VistaAgregarTarea();
         
         
     }
 
     private void abrirVistaCategoria() {
-        VistaCategoria vistaCategoria = new VistaCategoria(controlador, vistaTarea);
+        VistaCategoria vistaCategoria = new VistaCategoria(controladorCategoria, vistaTarea);
         vistaCategoria.VistaAgregarCategoria();
     }
 }

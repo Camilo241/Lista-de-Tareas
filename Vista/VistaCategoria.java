@@ -3,12 +3,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-import Controlador.Controlador;
+import Controlador.ControladorCategoria;
 import Modelo.Categoria;
 
 
 public class VistaCategoria extends JFrame {
-    private Controlador controlador;
+    private ControladorCategoria controladorCategoria;
     private VistaTarea vistaTarea;
     private JFrame ventana;
     private JPanel panel;
@@ -19,9 +19,9 @@ public class VistaCategoria extends JFrame {
 
 
     
-    public VistaCategoria(Controlador controlador,VistaTarea vistaTarea) {
+    public VistaCategoria(ControladorCategoria controladorCategoria,VistaTarea vistaTarea) {
         this.vistaTarea = vistaTarea;
-        this.controlador = controlador;
+        this.controladorCategoria = controladorCategoria;
     }
     public void VistaAgregarCategoria() {
         ventana = new JFrame("Categorias");
@@ -73,7 +73,7 @@ public class VistaCategoria extends JFrame {
         String categoriaE = EstadoCategoria.getText();
         boolean estadoCategoria = categoriaE.equalsIgnoreCase("true");  
         if (!categoriaN.isEmpty() ) {
-            controlador.agregarCategoria(categoriaN,estadoCategoria);
+            controladorCategoria.agregarCategoria(categoriaN,estadoCategoria);
             JOptionPane.showMessageDialog(this, "Categoría agregada correctamente");            
             vistaTarea.actualizarCategorias();
             limpiarCampo();
