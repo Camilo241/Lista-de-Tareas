@@ -28,7 +28,7 @@ public class Controlador {
         String sql = "{call SP_InsertarCategoria(?, ?)}";  // Usamos ? como marcadores de posición
 
         try (Connection conn = coneccion.getConnection();
-             CallableStatement stmt = conn.prepareCall(sql)) {
+            CallableStatement stmt = conn.prepareCall(sql)) {
 
             stmt.setString(1, categoria.getNombreCategoria());  // Primer parámetro
             stmt.setBoolean(2, categoria.isEstadoCategoria());  // Segundo parámetro

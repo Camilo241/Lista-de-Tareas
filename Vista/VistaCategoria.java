@@ -71,9 +71,9 @@ public class VistaCategoria extends JFrame {
     private void agregarCategoria() {
         String categoriaN = NombreCategoria.getText();
         String categoriaE = EstadoCategoria.getText();
-
-        if (!categoriaN.isEmpty() && categoriaE.isEmpty()) {
-            controlador.agregarCategoria(new Categoria( nombreCategoria, estadoCategoria));
+        boolean estadoCategoria = categoriaE.equalsIgnoreCase("true");  
+        if (!categoriaN.isEmpty() ) {
+            controlador.agregarCategoria(categoriaN,estadoCategoria);
             JOptionPane.showMessageDialog(this, "Categoría agregada correctamente");            
             vistaTarea.actualizarCategorias();
             limpiarCampo();
@@ -83,6 +83,7 @@ public class VistaCategoria extends JFrame {
     }
     private void limpiarCampo() {
         NombreCategoria.setText("");
+        EstadoCategoria.setText("");
     }
 
 }
